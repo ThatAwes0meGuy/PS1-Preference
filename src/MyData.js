@@ -1,14 +1,39 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './App.css';
-import {Table, Tag} from 'antd';
+import {Table, Tag, Modal} from 'antd';
 
 export default function MyData(rawData) {
+const [isModalVisible, setIsModalVisible] = useState(false);
+const [modalContent, setModalContent] = useState(["Notjing"]);
+
+  const showModal = (text) => {
+    setIsModalVisible(true);
+    rawData.data.map(el => {
+        if(el.name===text){
+            setModalContent(el.projects);
+            // console.log(el.projects)
+        }
+    })
+    // setModalContent(text);
+    console.log(rawData)
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+  const displayModalContent = () => {
+      modalContent.map(el => modalContent)
+  }
     const columns = [
         {
             title: 'Name',
             dataIndex: 'name',
             key: 'name',
-            render: text => <a>{text}</a>,
+            render: text => <span onClick={() => showModal(text)}>{text}</span>,
         },
         {
             title: 'Industry',
@@ -51,6 +76,22 @@ export default function MyData(rawData) {
 
     return (
         <div>
+         <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+            {
+                <div>
+                    {modalContent.map(proj => {
+                        let projKeys = Object.keys(proj);
+                        return(
+                            <div style={{textAlign:"left"}}>
+                                {projKeys.map(ele => <div><b>{ele.toUpperCase()}</b> : {proj[ele]}</div>)}
+                                <br></br>
+                             </div>
+                        )
+                    }
+                    )}
+                </div>
+            }
+         </Modal>
          <Table columns={columns} dataSource={rawData.data}/>
         </div>
     )
