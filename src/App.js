@@ -20,18 +20,15 @@ function App() {
   const branch = ["ANY", "B1", "B2", "B3", "B4", "B5", "AA", "A1", "A2", "A3", "A4", "A5", "A7", "A8", "C6"];
   const industry = ["ELECTRONICS", "FINANCE AND MGMT", "MECHANICAL", "CHEMICAL"," CEMENT", "INFRASTRUCTURE", "IT", "COMPUTER SCIENCE", "HEALTH CARE", "GOVT RESEARCH LAB", "STEEL", "OTHERS"];
   return (
-    <div className="App">
+    <div>
      <Layout>
-       <Header className="header">  
+     <Header className="header">  
+
         <h1 style={{color:"#fffbe6"}}>PS1 HELPER</h1>
-        <Menu mode="horizontal">
-          <Menu.Item key="1">nav 1</Menu.Item>
-          <Menu.Item key="2">nav 2</Menu.Item>
-          <Menu.Item key="3">nav 3</Menu.Item>
-        </Menu>
+
        </Header>
        <Layout>
-         <Sider width={300}>
+         <Sider width={300} style={{backgroundColor:"#fff"}}>
     
           <Card title="FILTER BY BRANCH" >
              <Tag color="magenta" style={{marginBottom:"10px"}}>AA</Tag>
