@@ -76,14 +76,20 @@ const [modalContent, setModalContent] = useState(["Notjing"]);
 
     return (
         <div>
-         <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+         <Modal title="Project Description" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
             {
                 <div>
-                    {modalContent.map(proj => {
+                    {modalContent.map((proj, index) => {
                         let projKeys = Object.keys(proj);
                         return(
                             <div style={{textAlign:"left"}}>
-                                {projKeys.map(ele => <div><b>{ele.toUpperCase()}</b> : {proj[ele]}</div>)}
+                                <Tag color="#2db7f5">#{index+1}</Tag>
+                               
+                                {projKeys.map(ele => 
+                                <div>
+                                <b>{ele.toUpperCase()}</b> : {proj[ele]}
+                                </div>
+                                )}
                                 <br></br>
                              </div>
                         )
