@@ -1,8 +1,6 @@
 import React from 'react'
 import './App.css';
-import {useState, useEffect} from 'react';
-import { Input, Space, Layout } from 'antd';
-import { Menu, Breadcrumb, Card, Badge,  Table, Tag, Divider } from 'antd';
+import {Table, Tag} from 'antd';
 
 export default function MyData(rawData) {
     const columns = [
@@ -53,8 +51,7 @@ export default function MyData(rawData) {
 
     return (
         <div>
-         <Table columns={columns} dataSource={rawData.data} />
-         {console.log(rawData.data)}
+         <Table columns={columns} dataSource={rawData.data}/>
         </div>
     )
 }

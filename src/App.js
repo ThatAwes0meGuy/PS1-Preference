@@ -1,11 +1,13 @@
 import './App.css';
 import {useState, useEffect} from 'react';
 import { Input, Space, Layout } from 'antd';
-import { Menu,Card, Tag} from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
+import { Menu,Card, Tag, Button} from 'antd';
+import { SearchOutlined, DownloadOutlined  } from '@ant-design/icons';
 import axios from 'axios';
 import Fuse from 'fuse.js';
 import MyData from './MyData';
+import { CSVLink, CSVDownload } from "react-csv";
+
 
 function App() {
   const { Search } = Input;
@@ -13,6 +15,7 @@ function App() {
   const { SubMenu } = Menu;
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
+  const [csv, setCsv] = useState([]);
   //https://raw.githubusercontent.com/bitsacm/ps1data/master/src/data/ps1_data.json
 
   useEffect(() => {
@@ -23,7 +26,8 @@ function App() {
       keys: [
         "name",
         "industry",
-        "location"
+        "location",
+        "branches"
       ]
   })
 
@@ -31,12 +35,16 @@ function App() {
   const dataResults = query ? results.map(result => result.item): data;
   const branch = ["ANY", "B1", "B2", "B3", "B4", "B5", "AA", "A1", "A2", "A3", "A4", "A5", "A7", "A8", "C6"];
   const industry = ["ELECTRONICS", "FINANCE AND MGMT", "MECHANICAL", "CHEMICAL"," CEMENT", "INFRASTRUCTURE", "IT", "COMPUTER SCIENCE", "HEALTH CARE", "GOVT RESEARCH LAB", "STEEL", "OTHERS"];
-  
+  const colors = ["magenta", "red", "orange", "gold", "lime", "green", "cyan", "blue", "geekblue", "purple"]
+
   const queryHandler = ({currentTarget = {}}) => {
     const {value} = currentTarget;
     setQuery(value);
   }
   
+  const branchHandler = (branch) => {
+     console.log("HOW DO I DO THIS??")
+  }
   return (
     <div>
      <Layout>
@@ -47,35 +55,24 @@ function App() {
        </Header>
        <Layout>
          <Sider width={300} style={{backgroundColor:"#fff"}}>
-    
-          <Card title="FILTER BY BRANCH" >
-             <Tag color="magenta" style={{marginBottom:"10px"}}>AA</Tag>
-              <Tag color="red">A1</Tag>
-              <Tag color="volcano">A2</Tag>
-              <Tag color="orange">A3</Tag>
-              <Tag color="gold">A4</Tag>
-              <Tag color="lime">A7</Tag>
-              <Tag color="green">A8</Tag>
-              <Tag color="cyan">B1</Tag>
-              <Tag color="blue">B2</Tag>
-              <Tag color="geekblue">B3</Tag>
-              <Tag color="purple">B5</Tag>     
+          <Card title="FILTER BY BRANCH" >    
+             { branch.map( (el, index) => 
+                    <Tag key={index} onClick={(el) => branchHandler(el)} color={colors[index]} style={{marginBottom:"10px"}}>{el}</Tag>
+                 )}
           </Card> 
 
           <Card title="FILTER BY INDUSTRY">
-            <Tag color="magenta-inverse" style={{marginBottom:"10px"}}>ELECTRONICS</Tag>
-            <Tag color="red-inverse">FINANCE AND MGMT</Tag>
-            <Tag color="volcano-inverse">MECHANICAL</Tag>
-            <Tag color="orange-inverse" style={{marginBottom:"10px"}}>CHEMICAL</Tag>
-            <Tag color="gold-inverse">gold</Tag>
-            <Tag color="lime-inverse" style={{marginBottom:"10px"}}>lime</Tag>
-            <Tag color="green-inverse" style={{marginBottom:"10px"}}>green</Tag>
-            <Tag color="cyan-inverse">cyan</Tag>
-            <Tag color="blue-inverse">blue</Tag>
-            <Tag color="geekblue-inverse">geekblue</Tag>
-            <Tag color="purple-inverse">purple</Tag>      
+            { industry.map( (el, index) => 
+                    <Tag key={index} color={colors[index] + "-inverse"} style={{marginBottom:"10px"}}>{el}</Tag>
+                 )}  
           </Card> 
-          
+            <Button type="primary" icon={<DownloadOutlined />} size="large">
+              <CSVLink data={dataResults}><span style={{color:"#fff"}}>Download as CSV</span></CSVLink>
+            </Button>
+            
+
+
+
          </Sider>
          <Content>
           <Search placeholder="Eg: Machine Learning"  width = {300} size="large" enterButton prefix={<SearchOutlined/>} onChange={queryHandler}/>
