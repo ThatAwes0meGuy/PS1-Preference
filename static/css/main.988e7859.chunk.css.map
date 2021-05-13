@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/App.css"],"names":[],"mappings":"AAEA,KACE,qBAAsB,CACtB,iBACF,CAEA,OACE,wBACF,CAEA,MACE,wBACF","file":"main.988e7859.chunk.css","sourcesContent":["@import \"~antd/dist/antd.css\";\n\nbody{\n  background-color: #fff;\n  text-align: center;\n}\n\n.light{\n  background-color: #f0f2F5;\n}\n\n.dark{\n  background-color:#001529;\n}"]}

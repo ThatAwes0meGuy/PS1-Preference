@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/App.css"],"names":[],"mappings":"AAEA,KACE,qBAAsB,CACtB,iBACF","file":"main.2795a375.chunk.css","sourcesContent":["@import \"~antd/dist/antd.css\";\n\nbody{\n  background-color: #fff;\n  text-align: center;\n}"]}
