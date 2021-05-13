@@ -203,18 +203,18 @@ function App() {
           <Header style={{ backgroundColor: "#f0f2F5" }}>
             <Menu mode="horizontal" theme={theme} defaultSelectedKeys={["1"]}>
               <Menu.Item key="1">
-                <Link to="/">
+                <Link to="/PS1-Preference">
                   <HomeOutlined style={{ marginLeft: "10px" }} />
                 </Link>
               </Menu.Item>
               <Menu.Item key="2">
-                <Link to="/search-stations">Search Stations</Link>
+                <Link to="PS1-Preference/search-stations">Search Stations</Link>
               </Menu.Item>
               <Menu.Item key="3">
-                <Link to="/view-preferences">View Preferences</Link>
+                <Link to="PS1-Preference/view-preferences">View Preferences</Link>
               </Menu.Item>
               <Menu.Item key="4">
-                <Link to="/show-stations">Show Stations</Link>
+                <Link to="PS1-Preference/show-stations">Show Stations</Link>
               </Menu.Item>
               <Menu.Item key="5">
                 <Switch
