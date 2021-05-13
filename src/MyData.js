@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import { Table, Tag, Modal } from "antd";
+import { Table, Tag, Modal, Divider } from "antd";
 
 export default function MyData(rawData) {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -69,7 +69,20 @@ export default function MyData(rawData) {
       ),
     },
   ];
-
+  const colors = [
+    "#ff4d4f",
+    "#ffd666",
+    "#ffc53d",
+    "#ffec3d",
+    "#f759ab",
+    "#9254de",
+    "#0050b3",
+    "#ffa940",
+    "#ffc53d",
+    "#bae637",
+    "#52c41a",
+    "#006d75"    
+  ]
   return (
     <div>
       <Modal
@@ -84,8 +97,7 @@ export default function MyData(rawData) {
               let projKeys = Object.keys(proj);
               return (
                 <div style={{ textAlign: "left" }}>
-                  <Tag color="#2db7f5">#{index + 1}</Tag>
-
+                  <Divider orientation="left"> <Tag color={colors[Math.floor((Math.random() * 10) + 1)]}>Project #{index + 1}</Tag></Divider>
                   {projKeys.map((ele) => (
                     <div>
                       <b>{ele.toUpperCase()}</b> : {proj[ele]}
