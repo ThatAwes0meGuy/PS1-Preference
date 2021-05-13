@@ -38,7 +38,7 @@ export default function MyData(rawData) {
       key: "industry",
     },
     {
-      title: "location",
+      title: "Location",
       dataIndex: "location",
       key: "location",
     },

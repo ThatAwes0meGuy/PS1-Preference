@@ -1,12 +1,16 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import { Input, Space, Layout } from "antd";
-import { Menu, Card, Tag, Button } from "antd";
-import { SearchOutlined, DownloadOutlined } from "@ant-design/icons";
+import { Menu, Card, Tag, Button, Typography } from "antd";
+import { SearchOutlined, DownloadOutlined, GithubOutlined } from "@ant-design/icons";
 import axios from "axios";
 import Fuse from "fuse.js";
 import MyData from "./MyData";
 import { CSVLink, CSVDownload } from "react-csv";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loading from './Loading';
+
+
 
 function App() {
   const { Search } = Input;
@@ -16,6 +20,8 @@ function App() {
   const [query, setQuery] = useState("");
   const [csv, setCsv] = useState([]);
   const [branchQuery, setBranchQuery] = useState([]);
+  const [loader, setLoader] = useState(true);
+
   //https://raw.githubusercontent.com/bitsacm/ps1data/master/src/data/ps1_data.json
 
   useEffect(() => {
@@ -23,7 +29,10 @@ function App() {
       .get(
         "https://raw.githubusercontent.com/bitsacm/ps1data/master/src/data/ps1_data.json"
       )
-      .then((res) => setData(res.data));
+      .then((res) => {
+        setData(res.data)
+        setLoader(false);
+      });
   }, []);
 
   const options = {
@@ -135,12 +144,75 @@ function App() {
     setBranchQuery(prev => [...prev, branch])
     console.log(branchQuery)
     // setQuery(prevQ => prevQ + " " + branch)
+
+    const animatePlaceholder = () => {
+
+    //     // your custome placeholder goes here!
+    //     var ph = "Search Website e.g. \"Dancing Cats\"",
+    //     searchBar = $('#search'),
+    //     // placeholder loop counter
+    //     phCount = 0;
+
+    //     // function to return random number between
+    //     // with min/max range
+    //     function randDelay(min, max) {
+    //     return Math.floor(Math.random() * (max-min+1)+min);
+    //     }
+
+    //     // function to print placeholder text in a 
+    //     // 'typing' effect
+    //     function printLetter(string, el) {
+    //     // split string into character seperated array
+    //     var arr = string.split(''),
+    //       input = el,
+    //       // store full placeholder
+    //       origString = string,
+    //       // get current placeholder value
+    //       curPlace = $(input).attr("placeholder"),
+    //       // append next letter to current placeholder
+    //       placeholder = curPlace + arr[phCount];
+          
+    //     setTimeout(function(){
+    //       // print placeholder text
+    //       $(input).attr("placeholder", placeholder);
+    //       // increase loop count
+    //       phCount++;
+    //       // run loop until placeholder is fully printed
+    //       if (phCount < arr.length) {
+    //         printLetter(origString, input);
+    //       }
+    //     // use random speed to simulate
+    //     // 'human' typing
+    //     }, randDelay(50, 90));
+    //     }  
+
+    //     // function to init animation
+    //     function placeholder() {
+    //     $(searchBar).attr("placeholder", "");
+    //     printLetter(ph, searchBar);
+    //     }
+
+    //     placeholder();
+    //     $('.submit').click(function(e){
+    //     phCount = 0;
+    //     e.preventDefault();
+    //     placeholder();
+    //     });
+
+
+    }
+
   }
   return (
     <div>
       <Layout>
+      
         <Header className="header">
-          <h1 style={{ color: "#fffbe6" }}>PS1 HELPER</h1>
+          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+            <Menu.Item key="1">Search Stations</Menu.Item>
+            <Menu.Item key="2">Arrange Preferences</Menu.Item>
+            <Menu.Item key="3">View Preferences</Menu.Item>
+          </Menu>
         </Header>
         <Layout>
           <Sider width={300} style={{ backgroundColor: "#fff" }}>
@@ -175,7 +247,8 @@ function App() {
               </CSVLink>
             </Button>
           </Sider>
-          <Content>
+          <Content style={{ padding: '20px 50px' }}>
+
             <Search
               placeholder="Eg: Machine Learning"
               width={300}
@@ -184,11 +257,18 @@ function App() {
               prefix={<SearchOutlined />}
               onChange={queryHandler}
               value={query}
+              style={{ padding: '18px 0' }}
             />
-            <MyData data={dataResults} />
+            {loader ? <Loading /> : <MyData data={dataResults} />}
           </Content>
         </Layout>
-        <Footer></Footer>
+        <Footer>
+        <Space direction="horizontal">
+          <GithubOutlined spin="true" onClick={() => window.location='https://github.com/Ashish-AVS/PS1-Preference'}/>
+          <Typography.Text type="secondary">Ashish AVS</Typography.Text>
+        </Space>
+        
+        </Footer>
       </Layout>
     </div>
   );
