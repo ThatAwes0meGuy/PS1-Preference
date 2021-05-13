@@ -4,3 +4,11 @@ body{
   background-color: #fff;
   text-align: center;
 }
+
+.light{
+  background-color: #f0f2F5;
+}
+
+.dark{
+  background-color:#001529;
+}
