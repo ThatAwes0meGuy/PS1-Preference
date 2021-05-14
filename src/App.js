@@ -162,7 +162,7 @@ function App() {
       if (phCount < arr.length) {
         printLetter(origString);
       }
-    }, 0.6);
+    }, 1);
     }   
     printLetter(ph);
 }
