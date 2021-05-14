@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
-import { Table, Tag, Modal, Divider } from "antd";
+import { Table, Tag, Modal, Divider, Typography } from "antd";
+import {colors} from './constants';
 
 export default function MyData(rawData) {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -36,6 +37,13 @@ export default function MyData(rawData) {
       title: "Industry",
       dataIndex: "industry",
       key: "industry",
+      render: (text) => {
+        
+        return(
+          <Tag color={colors[Math.round(Math.random() * 10)]}> <Typography.Text>{text}</Typography.Text></Tag>
+        )
+      }
+      
     },
     {
       title: "Location",
@@ -69,20 +77,20 @@ export default function MyData(rawData) {
       ),
     },
   ];
-  const colors = [
-    "#ff4d4f",
-    "#ffd666",
-    "#ffc53d",
-    "#ffec3d",
-    "#f759ab",
-    "#9254de",
-    "#0050b3",
-    "#ffa940",
-    "#ffc53d",
-    "#bae637",
-    "#52c41a",
-    "#006d75"    
-  ]
+  // const colors = [
+  //   "#ff4d4f",
+  //   "#ffd666",
+  //   "#ffc53d",
+  //   "#ffec3d",
+  //   "#f759ab",
+  //   "#9254de",
+  //   "#0050b3",
+  //   "#ffa940",
+  //   "#ffc53d",
+  //   "#bae637",
+  //   "#52c41a",
+  //   "#006d75"    
+  // ]
   return (
     <div>
       <Modal
