@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/PS1-Preference/static/css/main.988e7859.chunk.css",
-    "main.js": "/PS1-Preference/static/js/main.6dc6bb4c.chunk.js",
-    "main.js.map": "/PS1-Preference/static/js/main.6dc6bb4c.chunk.js.map",
+    "main.js": "/PS1-Preference/static/js/main.745b405e.chunk.js",
+    "main.js.map": "/PS1-Preference/static/js/main.745b405e.chunk.js.map",
     "runtime-main.js": "/PS1-Preference/static/js/runtime-main.3711b90c.js",
     "runtime-main.js.map": "/PS1-Preference/static/js/runtime-main.3711b90c.js.map",
     "static/css/2.565cd60d.chunk.css": "/PS1-Preference/static/css/2.565cd60d.chunk.css",
@@ -18,6 +18,6 @@
     "static/css/2.565cd60d.chunk.css",
     "static/js/2.2fcb98aa.chunk.js",
     "static/css/main.988e7859.chunk.css",
-    "static/js/main.6dc6bb4c.chunk.js"
+    "static/js/main.745b405e.chunk.js"
   ]
 }
