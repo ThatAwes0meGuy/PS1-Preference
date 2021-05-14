@@ -23,6 +23,16 @@ export const industry = [
     "blue",
     "geekblue",
     "purple",
+    "magenta",
+    "red",
+    "orange",
+    "gold",
+    "lime",
+    "green",
+    "cyan",
+    "blue",
+    "geekblue",
+    "purple"
   ];
 
  export const branch = [
