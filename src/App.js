@@ -88,12 +88,12 @@ function App() {
 
   const filterHandler = (branch) => {
     setBranchQuery((prev) => [...prev, branch]);
-    console.log(branchQuery);
+    // console.log(branchQuery);
     // setQuery(prevQ => prevQ + " " + branch)
           
   }
   const animatePlaceholder = (ph) => {
-    console.log("FUNCTION CALLED")
+    // console.log("FUNCTION CALLED")
     let phCount = 0;
     setPlaceholder("");
     function printLetter(string) {

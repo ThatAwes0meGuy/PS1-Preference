@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./App.css";
-import { Table, Tag, Modal, Divider, Typography } from "antd";
+import { Table, Tag, Modal, Divider, Typography} from "antd";
 import {colors} from './constants';
 
 export default function MyData(rawData) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [modalContent, setModalContent] = useState(["Sphagetti Code"]);
+  const [ellipsis, setEllipsis] = React.useState(true);
 
   const showModal = (text) => {
     setIsModalVisible(true);
@@ -16,7 +17,7 @@ export default function MyData(rawData) {
       }
     });
     // setModalContent(text);
-    console.log(rawData);
+    // console.log(rawData);
   };
 
   const handleOk = () => {
@@ -104,13 +105,17 @@ export default function MyData(rawData) {
             {modalContent.map((proj, index) => {
               let projKeys = Object.keys(proj);
               return (
-                <div style={{ textAlign: "left" }}>
+                <div style={{ textAlign: "left" }} key={index}>
                   <Divider orientation="left"> <Tag color={colors[Math.floor((Math.random() * 10) + 1)]}>Project #{index + 1}</Tag></Divider>
-                  {projKeys.map((ele) => (
-                    <div>
-                      <b>{ele.toUpperCase()}</b> : {proj[ele]}
-                    </div>
-                  ))}
+                  {projKeys.map((ele) => {
+                    return(
+                      <div key={ele.charAt(0)}>
+                        <Typography.Paragraph ellipsis={ellipsis ? { rows: 2, expandable: true, symbol: 'more' } : false}>
+                          <b>{ ele.charAt(0).toUpperCase() + ele.slice(1)}</b> : {proj[ele]}
+                        </Typography.Paragraph>
+                      </div>
+                    )
+                  })}
                   <br></br>
                 </div>
               );
