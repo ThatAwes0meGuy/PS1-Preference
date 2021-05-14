@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import { Input, Space, Layout } from "antd";
-import { Menu, Card, Tag, Button, Typography, Switch } from "antd";
+import { Menu, Tag, Button, Typography, Switch } from "antd";
 import {
   SearchOutlined,
   DownloadOutlined,
@@ -16,7 +16,7 @@ import {
 import axios from "axios";
 import Fuse from "fuse.js";
 import MyData from "./MyData";
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loading from "./Loading";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -27,10 +27,10 @@ function App() {
   const { SubMenu } = Menu;
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
-  const [csv, setCsv] = useState([]);
   const [branchQuery, setBranchQuery] = useState([]);
   const [loader, setLoader] = useState(true);
   const [theme, themeHandler] = useState("light");
+  const [placeholder, setPlaceholder] = useState();
 
   //https://raw.githubusercontent.com/bitsacm/ps1data/master/src/data/ps1_data.json
 
@@ -42,6 +42,7 @@ function App() {
       .then((res) => {
         setData(res.data);
         setLoader(false);
+        animatePlaceholder("Ex: Machine Learning....")
       });
   }, []);
 
@@ -146,56 +147,25 @@ function App() {
     setBranchQuery((prev) => [...prev, branch]);
     console.log(branchQuery);
     // setQuery(prevQ => prevQ + " " + branch)
-
-    const animatePlaceholder = () => {
-      //     // your custome placeholder goes here!
-      //     var ph = "Search Website e.g. \"Dancing Cats\"",
-      //     searchBar = $('#search'),
-      //     // placeholder loop counter
-      //     phCount = 0;
-      //     // function to return random number between
-      //     // with min/max range
-      //     function randDelay(min, max) {
-      //     return Math.floor(Math.random() * (max-min+1)+min);
-      //     }
-      //     // function to print placeholder text in a
-      //     // 'typing' effect
-      //     function printLetter(string, el) {
-      //     // split string into character seperated array
-      //     var arr = string.split(''),
-      //       input = el,
-      //       // store full placeholder
-      //       origString = string,
-      //       // get current placeholder value
-      //       curPlace = $(input).attr("placeholder"),
-      //       // append next letter to current placeholder
-      //       placeholder = curPlace + arr[phCount];
-      //     setTimeout(function(){
-      //       // print placeholder text
-      //       $(input).attr("placeholder", placeholder);
-      //       // increase loop count
-      //       phCount++;
-      //       // run loop until placeholder is fully printed
-      //       if (phCount < arr.length) {
-      //         printLetter(origString, input);
-      //       }
-      //     // use random speed to simulate
-      //     // 'human' typing
-      //     }, randDelay(50, 90));
-      //     }
-      //     // function to init animation
-      //     function placeholder() {
-      //     $(searchBar).attr("placeholder", "");
-      //     printLetter(ph, searchBar);
-      //     }
-      //     placeholder();
-      //     $('.submit').click(function(e){
-      //     phCount = 0;
-      //     e.preventDefault();
-      //     placeholder();
-      //     });
-    };
-  };
+          
+  }
+  const animatePlaceholder = (ph) => {
+    console.log("FUNCTION CALLED")
+    let phCount = 0;
+    setPlaceholder("");
+    function printLetter(string) {
+      let arr = string.split('');
+      let origString = string;
+    setTimeout(function(){
+      setPlaceholder(prevState => prevState + arr[phCount]);
+      phCount++;
+      if (phCount < arr.length) {
+        printLetter(origString);
+      }
+    }, 0.6);
+    }   
+    printLetter(ph);
+}
   return (
     <Router>
       <div>
@@ -295,7 +265,7 @@ function App() {
             </Sider>
             <Content style={{ padding: "20px 50px" }}>
               <Search
-                placeholder="Eg: Machine Learning"
+                placeholder={placeholder}
                 width={300}
                 size="large"
                 enterButton
@@ -304,6 +274,7 @@ function App() {
                 value={query}
                 style={{ padding: "18px 0" }}
               />
+              
               {loader ? (
                 <Loading />
               ) : (
