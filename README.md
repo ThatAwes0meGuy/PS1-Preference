@@ -1,6 +1,6 @@
 # About
 
-This app shows all the PS1 stations of BPHC along with their projects with a better UI than PSD website, go to *Show Stations* route to view the list 
+This app shows all the PS1 stations of BPHC along with their projects with a better UI than PSD website, go to **Search Stations** route to view the list 
 
 # Getting Started with Create React App
 
