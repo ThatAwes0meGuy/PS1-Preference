@@ -19,12 +19,12 @@ import Loading from "./Loading";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import {branch, industry, colors} from './constants.js';
 import Head from "./components/Head";
-
+import data from "./Data/data.json"
 function App() {
   const { Search } = Input;
   const { Footer, Sider, Content } = Layout;
   const { SubMenu } = Menu;
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
   const [branchQuery, setBranchQuery] = useState([]);
   const [loader, setLoader] = useState(true);
@@ -32,17 +32,16 @@ function App() {
   const [placeholder, setPlaceholder] = useState();
 
   //https://raw.githubusercontent.com/bitsacm/ps1data/master/src/data/ps1_data.json
-
   useEffect(() => {
-    axios
-      .get(
-        "https://raw.githubusercontent.com/bitsacm/ps1data/master/src/data/ps1_data.json"
-      )
-      .then((res) => {
-        setData(res.data);
-        setLoader(false);
-        animatePlaceholder("Ex: Machine Learning....")
-      });
+    animatePlaceholder("Ex: Machine Learning....")
+    // axios
+    //   .get(
+    //     "https://raw.githubusercontent.com/bitsacm/ps1data/master/src/data/ps1_data.json"
+    //   )
+    //   .then((res) => {
+    //     setData(res.data);
+    //     setLoader(false);
+    //   });
   }, []);
 
   const options = {
