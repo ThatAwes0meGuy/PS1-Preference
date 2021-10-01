@@ -10,7 +10,6 @@ import {
   FilterOutlined,
   TeamOutlined
 } from "@ant-design/icons";
-import axios from "axios";
 import Fuse from "fuse.js";
 import MyData from "./MyData";
 import { CSVLink } from "react-csv";
@@ -67,7 +66,7 @@ function App() {
     threshold: 0.6,
   });
   let branchResults;
-  branchQuery.map((el) => {
+  branchQuery.forEach((el) => {
     branchResults = branchFuse.search(el);
   });
   let branchDataResults = branchQuery.length

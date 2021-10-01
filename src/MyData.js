@@ -10,7 +10,7 @@ export default function MyData(rawData) {
 
   const showModal = (text) => {
     setIsModalVisible(true);
-    rawData.data.map((el) => {
+    rawData.data.forEach((el) => {
       if (el.name === text) {
         setModalContent(el.projects);
         // console.log(el.projects)
@@ -78,20 +78,6 @@ export default function MyData(rawData) {
       ),
     },
   ];
-  // const colors = [
-  //   "#ff4d4f",
-  //   "#ffd666",
-  //   "#ffc53d",
-  //   "#ffec3d",
-  //   "#f759ab",
-  //   "#9254de",
-  //   "#0050b3",
-  //   "#ffa940",
-  //   "#ffc53d",
-  //   "#bae637",
-  //   "#52c41a",
-  //   "#006d75"    
-  // ]
   return (
     <div>
       <Modal
