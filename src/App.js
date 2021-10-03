@@ -33,29 +33,10 @@ function App() {
   //https://raw.githubusercontent.com/bitsacm/ps1data/master/src/data/ps1_data.json
   useEffect(() => {
     animatePlaceholder("Ex: Machine Learning....")
-    // axios
-    //   .get(
-    //     "https://raw.githubusercontent.com/bitsacm/ps1data/master/src/data/ps1_data.json"
-    //   )
-    //   .then((res) => {
-    //     setData(res.data);
-    //     setLoader(false);
-    //   });
   }, []);
 
   const options = {
-    // isCaseSensitive: false,
-    // includeScore: false,
-    // shouldSort: true,
-    // includeMatches: false,
-    // findAllMatches: false,
-    // minMatchCharLength: 1,
-    // location: 0,
     threshold: 0.2,
-    // distance: 100,
-    // useExtendedSearch: false,
-    // ignoreLocation: false,
-    // ignoreFieldNorm: false,
     tokenize: true,
     matchAllTokens: true,
     keys: ["name", "industry", "location", "branches"],
@@ -86,12 +67,8 @@ function App() {
 
   const filterHandler = (branch) => {
     setBranchQuery((prev) => [...prev, branch]);
-    // console.log(branchQuery);
-    // setQuery(prevQ => prevQ + " " + branch)
-          
   }
   const animatePlaceholder = (ph) => {
-    // console.log("FUNCTION CALLED")
     let phCount = 0;
     setPlaceholder("");
     function printLetter(string) {

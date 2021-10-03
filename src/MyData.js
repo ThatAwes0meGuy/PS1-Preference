@@ -13,11 +13,8 @@ export default function MyData(rawData) {
     rawData.data.forEach((el) => {
       if (el.name === text) {
         setModalContent(el.projects);
-        // console.log(el.projects)
       }
     });
-    // setModalContent(text);
-    // console.log(rawData);
   };
 
   const handleOk = () => {
