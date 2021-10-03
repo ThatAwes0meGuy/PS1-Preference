@@ -46,12 +46,12 @@ export default function Tags() {
         "OTHERS",
       ];
     return (
-        <div style={{ marginLeft: "23px" }}>
+        <div style={{ marginLeft: "23px", cursor:"pointer"}}>
         {branch.map((el, index) => (
             <Tag
             key={index}
             color={colors[index] + "-inverse"}
-            style={{ marginBottom: "10px" }}
+            style={{ marginBottom: "10px"}}
             >
             {el}
             </Tag>

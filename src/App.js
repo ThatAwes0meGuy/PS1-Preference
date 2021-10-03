@@ -8,7 +8,7 @@ import {
   GithubOutlined,
   DesktopOutlined,
   FilterOutlined,
-  TeamOutlined
+  TeamOutlined,
 } from "@ant-design/icons";
 import Fuse from "fuse.js";
 import MyData from "./MyData";
@@ -16,12 +16,13 @@ import { CSVLink } from "react-csv";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loading from "./Loading";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import {branch, industry, colors} from './constants.js';
+import { branch, industry, colors } from "./constants.js";
 import Head from "./components/Head";
-import data from "./Data/data.json"
+import data from "./Data/data.json";
+import Footer from "./components/Footer";
 function App() {
   const { Search } = Input;
-  const { Footer, Sider, Content } = Layout;
+  const { Sider, Content } = Layout;
   const { SubMenu } = Menu;
   // const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
@@ -32,7 +33,7 @@ function App() {
 
   //https://raw.githubusercontent.com/bitsacm/ps1data/master/src/data/ps1_data.json
   useEffect(() => {
-    animatePlaceholder("Ex: Machine Learning....")
+    animatePlaceholder("Ex: Machine Learning....");
   }, []);
 
   const options = {
@@ -67,27 +68,30 @@ function App() {
 
   const filterHandler = (branch) => {
     setBranchQuery((prev) => [...prev, branch]);
-  }
+  };
   const animatePlaceholder = (ph) => {
     let phCount = 0;
     setPlaceholder("");
     function printLetter(string) {
-      let arr = string.split('');
+      let arr = string.split("");
       let origString = string;
-    setTimeout(function(){
-      setPlaceholder(prevState => prevState + arr[phCount]);
-      phCount++;
-      if (phCount < arr.length) {
-        printLetter(origString);
-      }
-    }, 100);
-    }   
+      setTimeout(function () {
+        setPlaceholder((prevState) => prevState + arr[phCount]);
+        phCount++;
+        if (phCount < arr.length) {
+          printLetter(origString);
+        }
+      }, 100);
+    }
     printLetter(ph);
-}
+  };
   return (
     <Router>
       <div>
-          <Layout> <Head /> <Layout>
+        <Layout>
+          {" "}
+          <Head />{" "}
+          <Layout>
             <Sider
               width={300}
               style={{ marginLeft: "50px", marginTop: "92px" }}
@@ -160,7 +164,7 @@ function App() {
                 value={query}
                 style={{ padding: "18px 0" }}
               />
-              
+
               {loader ? (
                 <Loading />
               ) : (
@@ -172,18 +176,7 @@ function App() {
               )}
             </Content>
           </Layout>
-          <Footer>
-            <Space direction="horizontal">
-              <GithubOutlined
-                spin="true"
-                onClick={() =>
-                  (window.location =
-                    "https://github.com/Ashish-AVS/PS1-Preference")
-                }
-              />
-              <Typography.Text type="secondary">Ashish AVS</Typography.Text>
-            </Space>
-          </Footer>
+          <Footer />
         </Layout>
       </div>
     </Router>
